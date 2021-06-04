@@ -1,15 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MENU_ITEMS } from './pages-menu';
 
 @Component({
   selector: 'app-pages',
   templateUrl: './pages.component.html',
-  styleUrls: ['./pages.component.scss']
 })
 export class PagesComponent implements OnInit {
 
-  constructor() { }
+  constructor( public router: Router) { }
+
+  treeNodes = MENU_ITEMS;
+
+  searchText = ''
+
+  public thyIcons = { expand: 'angle-down', collapse: 'angle-right' };
 
   ngOnInit(): void {
+  }
+
+  onClickTitle(node){
+    if(node.link){
+      this.router.navigateByUrl(node.link)
+    }
   }
 
 }

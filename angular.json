@@ -31,13 +31,13 @@
               "src/assets",
               {
                 "glob": "**/*",
-                "input": "./node_modules/@tethys/icons",
-                "output": "/assets/icons/"
+                "input": "./node_modules/@tethys/icons/defs",
+                "output": "./assets/icons/defs/"
               }
             ],
             "styles": [
               "src/styles.scss",
-              "./node_modules/ngx-tethys/styles/main.bundle.scss"
+              "node_modules/ngx-tethys/styles/main.bundle.scss"
             ],
             "scripts": []
           },

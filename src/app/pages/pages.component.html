@@ -1,1 +1,29 @@
-<p>pages works!</p>
+<thy-layout class="page">
+  <thy-sidebar thyHasBorderRight="false" class="sidebar">
+    <div class="sidebar-brand">
+      <img class="logo" src="https://cdn.worktile.com/open-sources/ngx-tethys/logos/tethys.png">
+      <a href="" class="title">NgxTethys-Pro</a>
+    </div>
+    <thy-tree #tree [thyNodes]="treeNodes" [thySelectedKeys]="['dashboard']" [thyIcons]="thyIcons">
+      <ng-template #treeNodeTemplate let-node="node" let-department="origin">
+        <thy-icon class="thy-tree-node-icon" [thyIconName]="department.icon"></thy-icon>
+        <div class="thy-tree-node-title" [style.color]="'black'" (click)="onClickTitle(department)">
+          {{ department?.title }}
+        </div>
+      </ng-template>
+    </thy-tree>
+  </thy-sidebar>
+  <thy-content class="content">
+    <div class="golbal-header">
+      <thy-input-search  class="header-options" name="search1" thyTheme="ellipse" thySize="sm" [(ngModel)]="searchText"></thy-input-search>
+      <span thyBadge [thyCount]="5" class="header-options">
+        <thy-icon thyIconName="bell"></thy-icon>
+      </span>
+      <span class="header-options" >
+        <thy-avatar thyName="Peter" thySize="sm" class="mr-2"></thy-avatar>
+        <span>Peter</span>
+      </span>
+    </div>
+    <router-outlet></router-outlet>
+  </thy-content>
+</thy-layout>
