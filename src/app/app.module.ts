@@ -3,8 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ThyIconRegistry } from 'ngx-tethys';
+import { NgxTethysModule, ThyIconRegistry } from 'ngx-tethys';
 import { HttpClientModule } from '@angular/common/http';
+import { CoreModule } from './core/core.module';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './mock/mock';
+import { httpInterceptorProviders } from './core/interceptors';
 
 const appIconNames = ['app-wiki-square-fill', 'app-wiki-square-fill-large', 'logo'];
 
@@ -16,8 +20,13 @@ const appIconNames = ['app-wiki-square-fill', 'app-wiki-square-fill-large', 'log
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NgxTethysModule,
+    CoreModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    )
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 

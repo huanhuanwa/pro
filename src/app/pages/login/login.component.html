@@ -1,0 +1,14 @@
+<form thyForm name="demoForm" #demoForm="thyForm">
+    <thy-form-group thyLabelText="用户名" thyLabelRequired thyTips="This is tips for username">
+      <input thyInput name="username" [(ngModel)]="model.username" required placeholder="Please type username" />
+    </thy-form-group>
+    <thy-form-group thyLabelText="密码" thyLabelRequired>
+      <input thyInput type="password" name="password" [(ngModel)]="model.password" required placeholder="Please type password" />
+    </thy-form-group>
+    <thy-form-group-footer>
+      <button [thyButton]="'primary'" [thyLoading]="saving" thyLoadingText="Login" (thyFormSubmit)="login()">
+        登录
+      </button>
+      <button [thyButton]="'link-secondary'" (click)="cancel()">取消</button>
+    </thy-form-group-footer>
+  </form>
