@@ -37,7 +37,6 @@ function generateToken(user: User): AccessToken {
         urlSafeBase64Encode(payload),
         urlSafeBase64Encode(key),
     ].join('.');
-
     return {
         access_token: accessToken,
         token_type: 'ngx-tethys',
@@ -46,7 +45,6 @@ function generateToken(user: User): AccessToken {
 }
 
 function getUserFromJWTToken(req: HttpRequest<any>) {
-    console.log(12345)
     const authorization = req.headers.get('Authorization');
     const [, token] = authorization.split(' ');
 
@@ -96,8 +94,16 @@ export class InMemoryDataService implements InMemoryDbService {
               if (!user) {
                 return { status: STATUS.UNAUTHORIZED, headers, url, body: {} };
               }
-      
               return { status: STATUS.OK, headers, url, body: user };
+            });
+        }
+
+        if (is(reqInfo, 'menu')) {
+            return reqInfo.utils.createResponse$(() => {
+              const { headers, url } = reqInfo;
+              const menu = JSON.parse(this.fetch('assets/data/menu.json?_t=' + Date.now())).menu;
+      
+              return { status: STATUS.OK, headers, url, body: { menu } };
             });
           }
         return null;
@@ -132,4 +138,14 @@ export class InMemoryDataService implements InMemoryDbService {
             return { status: STATUS.OK, headers, url, body: generateToken(currentUser) };
         });
     }
+
+      private fetch(url: string) {
+    let content: any = null;
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url, false);
+    xhr.onload = () => (content = xhr.responseText);
+    xhr.send();
+
+    return content;
+  }
 }

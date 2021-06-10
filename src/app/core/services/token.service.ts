@@ -16,8 +16,8 @@ export class TokenService {
     constructor() { }
 
     set(token: AccessToken, refresh = false) {
-        cache.set(this.key, token.access_token);
         this.token = SimpleToken.create(token);
+        cache.set(this.key, this.token);
         this.change$.next(this.token.clone({ refresh }));
 
         return this;
