@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../core/services/auth.service';
 import { MenuService } from '../core/services/menu.service';
-import { MenuInfo } from '../core/infos/menu.info'
+import { MenuInfo } from '../core/infos/menu.info';
+
 @Component({
   selector: 'app-pages',
   templateUrl: './pages.component.html',

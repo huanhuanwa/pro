@@ -22,6 +22,7 @@ export class TokenService {
 
         return this;
     }
+    
     get() {
         if (!this.token) {
             this.token = new SimpleToken(cache.get(this.key));

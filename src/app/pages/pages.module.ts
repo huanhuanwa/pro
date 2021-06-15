@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PagesComponent } from './pages.component';
 import { PagesRoutingModule } from './pages-routing.module';
-import { DashboardModule } from './dashboard/home.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 import { ThyAvatarModule, ThyBadgeModule, ThyIconModule, ThyInputModule, ThyLayoutModule, ThyTreeModule, ThyFormModule, ThyButtonModule } from 'ngx-tethys';
 import { LayoutComponent } from './layout/layout.component';
 import { FormsModule } from '@angular/forms';
